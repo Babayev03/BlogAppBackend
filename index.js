@@ -20,7 +20,7 @@ app.use((req, res, next) => {
     if (req.headers.authorization) {
       let token = req.headers.authorization.split(" ")[1];
       try {
-        jwt.verify(token, process.env.privateKey);
+        jwt.verify(token, "Arishem");
         next();
       } catch (error) {
         res.json({ msg: "Hayırdır komşu nereye böyle..." });

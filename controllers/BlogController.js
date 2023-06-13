@@ -6,6 +6,7 @@ app.use(express.json());
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const env = require("dotenv").config();
+const {default: mongoose} = require("mongoose");
 
 const BlogController = {
   home: (req, res) => {
@@ -42,6 +43,7 @@ const BlogController = {
       title: req.body.title,
       description: req.body.description,
       avatar: req.body.avatar,
+      user: req.body.user
     });
 
     newBlog
@@ -136,9 +138,9 @@ const BlogController = {
       });
 
       // Return the token to the client
-      res.json({ success: true, token });
+      res.json({ success: true, token, userID: user._id });
     } catch (err) {
-      res.status(500).json({
+      res.json({
         success: false,
         errors: { msg: "Internal Server Error", err: err },
       });

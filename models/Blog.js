@@ -1,5 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
+const randomImageUri = `https://loremflickr.com/640/480/landscape?random=${Math.floor(Math.random(2000))}`;
+
 const blogSchema = new mongoose.Schema({
   title: String,
   description: String,
@@ -7,7 +9,7 @@ const blogSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   avatar: {
     type: String,
-    default: "https://loremflickr.com/640/480/landscape",
+    default: randomImageUri,
   },
 });
 

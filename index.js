@@ -23,10 +23,10 @@ app.use((req, res, next) => {
         jwt.verify(token, process.env.privateKey);
         next();
       } catch (error) {
-        res.status(401).json({ msg: "Hayırdır komşu nereye böyle..." });
+        res.json({ msg: "Hayırdır komşu nereye böyle..." });
       }
     } else {
-      res.status(401).json({ msg: "Hayırdır komşu nereye böyle..." });
+      res.json({ msg: "Hayırdır komşu nereye böyle..." });
     }
   }
 });

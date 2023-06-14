@@ -132,7 +132,7 @@ const BlogController = {
       }
 
       // Generate a token
-      let token = jwt.sign({ email: email }, "Arishem", {
+      let token = jwt.sign({ email: email }, process.env.privateKey, {
         // algorithm:'ES512'
         issuer: "Code Academy",
       });

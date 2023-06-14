@@ -13,14 +13,13 @@ database.connect();
 
 //
 app.use((req, res, next) => {
-  if (req.url == "/api/register"|| req.url == "/api/login") {
+  if (req.url == "/api/register" || req.url == "/api/login") {
     next();
   } else {
-    //kullanıcının bana gönderdiği tokenı header üzerinden aldım
     if (req.headers.authorization) {
       let token = req.headers.authorization.split(" ")[1];
       try {
-        jwt.verify(token, "Arishem");
+        jwt.verify(token, process.env.privateKey);
         next();
       } catch (error) {
         res.json({ msg: "Hayırdır komşu nereye böyle..." });
